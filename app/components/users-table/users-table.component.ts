@@ -36,23 +36,14 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   }
 
   initUsersList() {
-    if (!this.dataService.usersList.length || this.dataService.usersList.length === 1) {
-      let addedUser: User | undefined = undefined;    // used for correct initializing of usersList after refreshing the "create-form" page
-      if (this.dataService.usersList.length === 1) {
-        addedUser = this.dataService.usersList[0];
-      }
-
-      this.dataSubscribtions.push(this.dataService.getUsersListFromBack()
-        .subscribe(users => {
-          this.dataService.usersList = users.map((user: any) => {
-            return this.dataService.convertUser(user);
-          });
-          if (addedUser) this.dataService.usersList.push(addedUser)
-          this.usersList = this.dataService.usersList;
-        })
-      )
-    }
-    this.usersList = this.dataService.usersList;
+    this.dataSubscribtions.push(this.dataService.getUsersListFromBack()
+      .subscribe(users => {
+        console.log(users);
+        this.usersList = users.map((user: any) => {
+          return this.dataService.convertUser(user);
+        });
+      })
+    )
   }
 
   ngOnDestroy() {

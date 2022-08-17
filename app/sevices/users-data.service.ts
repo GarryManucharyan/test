@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from "../data/user.model";
@@ -19,8 +20,7 @@ export class UsersDataService {
             name: `${user.firstName} ${user.lastName}`,
             username: user.userName,
         };
-
-        return this.http.post("https://jsonplaceholder.typicode.com/users", createdUser)
+        return this.http.post(environment.url, createdUser)
     }
 
     deleteUser(id: number) {
@@ -28,7 +28,7 @@ export class UsersDataService {
             return item.id === id
         })
         this.usersList.splice(index, 1);
-        return this.http.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+        return this.http.delete(`${environment.url}/${id}`)
     }
 
     changeUser(user: User) {
@@ -36,17 +36,17 @@ export class UsersDataService {
             return item.id === user.id
         })
         this.usersList[index] = user;
-        return this.http.patch(`https://jsonplaceholder.typicode.com/users/${user.id}`, this.convertUserBack(user))
+        return this.http.patch(`${environment.url}/${user.id}`, this.convertUserBack(user))
     }
 
     //#endregion
     //#region Getters
 
     getUsersListFromBack(): Observable<User[]> {
-        return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users")
+        return this.http.get<User[]>(environment.url)
     }
     getUserByIdFromBack(id: number): Observable<any> {
-        return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
+        return this.http.get<User>(`${environment.url}/${id}`)
     }
     //#endregion
     //#region helpers

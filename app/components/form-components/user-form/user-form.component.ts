@@ -15,7 +15,7 @@ type modeType = 'edit' | 'view' | 'create';
 })
 
 export class UserFormComponent implements OnInit {
-  
+
   public pageMode: modeType = 'create';
   public currentUser: User = new User();
   public newUserForm!: FormGroup;
@@ -98,9 +98,7 @@ export class UserFormComponent implements OnInit {
     this.isSaveButtonDisabled = true;
     this.currentUser = this.newUserForm.value;
     this.currentUser.id = this.dataService.createUniqueId();
-    this.dataSubscribtion.add(this.dataService.addUser(this.currentUser).subscribe(res => {
-      let convertedUser = this.userConverter(res as { name: string; username: string; id: number; })
-      this.dataService.usersList.push(convertedUser as User)
+    this.dataSubscribtion.add(this.dataService.addUser(this.currentUser).subscribe(() => {
       this.isSaveButtonDisabled = false;
       this.onNavigateToHomePage();
     }));
