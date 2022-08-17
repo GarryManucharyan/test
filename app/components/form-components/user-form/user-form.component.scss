@@ -1,0 +1,95 @@
+.all {
+    display    : inline-block;
+    padding    : 0;
+    width      : 25%;
+    margin-left: 100px;
+}
+
+.reactiveForm h4 {
+    margin: 25px;
+}
+
+.form-group {
+    margin: 25px;
+}
+
+.form-control {
+    display      : inline-block;
+    padding      : 10px 15px;
+    border       : solid rgb(220, 220, 220) 1px;
+    border-radius: 4px;
+}
+
+.form-control::placeholder {
+    color: rgb(220, 220, 220);
+}
+
+.form-group label {
+    display      : block;
+    font-size    : 11px;
+    font-weight  : 700;
+    margin-bottom: 5px;
+}
+
+.buttons {
+    width          : 211px;
+    display        : flex;
+    padding        : 0 25px;
+    justify-content: right;
+}
+
+
+.submitBtn,
+.submitBtn:hover,
+.submitBtn:focus {
+    color           : white;
+    display         : flex;
+    cursor          : pointer;
+    background-color: rgba(0, 169, 189, 0.5);
+    padding         : 10px;
+    margin          : 0 5px;
+    border          : none;
+    border-radius   : 5px;
+    font-weight     : 500;
+    margin-left     : auto;
+}
+
+.submitBtn:hover {
+    background-color: rgba(0, 169, 189, 0.6);
+}
+
+.submitBtn:focus {
+    background-color: rgba(0, 169, 189, 0.7);
+}
+
+.submitBtn:disabled {
+    background-color: rgba(0, 169, 189, 0.25);
+    border          : solid 1px lightgray;
+}
+
+.cancelBtn,
+.cancelBtn:hover,
+.cancelBtn:focus {
+    display         : flex;
+    cursor          : pointer;
+    background-color: rgb(220, 220, 220);
+    padding         : 10px;
+    margin-left     : 5px;
+    border          : none;
+
+    border-radius: 5px;
+    font-weight  : 500;
+}
+
+.cancelBtn:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.cancelBtn:focus {
+    background-color: rgb(170, 170, 170);
+}
+
+.validationAlert {
+    color    : red;
+    font-size: 10px;
+}

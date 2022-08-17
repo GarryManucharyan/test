@@ -1,0 +1,99 @@
+<div class="all">
+    <form [formGroup]="newUserForm" novalidate class="reactiveForm">
+
+        <h4 *ngIf="pageMode === 'create'">Create User</h4>
+        <h4 *ngIf="pageMode === 'edit'">Edit User</h4>
+        <h4 *ngIf="pageMode === 'view'">{{ currentUser.firstName }} {{ currentUser.lastName }}</h4>
+
+        <div class="form-group">
+            <label for="firstName"> First Name*</label>
+            <input class="form-control" name="firstName" formControlName="firstName" placeholder="First Name*" />
+
+            <div *ngIf="
+            newUserForm.controls['firstName'].errors?.['required'] &&
+            newUserForm.controls['firstName'].touched
+          ">
+                <span class="validationAlert">First Name is required</span>
+            </div>
+            <div *ngIf="
+            newUserForm.controls['firstName'].errors?.['minlength'] &&
+            newUserForm.controls['firstName'].touched
+          ">
+                <span class="validationAlert">First Name must be at least 2 characters</span>
+            </div>
+            <div *ngIf="
+            newUserForm.controls['firstName'].errors?.['maxlength'] &&
+            newUserForm.controls['firstName'].touched
+          ">
+                <span class="validationAlert">max symbols count - 50</span>
+            </div>
+            <div *ngIf="
+            newUserForm.controls['firstName'].errors?.['pattern'] &&
+            newUserForm.controls['firstName'].touched
+          ">
+                <span class="validationAlert">must include only letters</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">Last Name*</label>
+            <input class="form-control" name="lastName" formControlName="lastName" placeholder="Last Name*" />
+
+            <div *ngIf="newUserForm.controls['lastName'].errors?.['required'] &&
+                        newUserForm.controls['lastName'].touched">
+                <span class="validationAlert">Lastname is required</span>
+            </div>
+            <div *ngIf="
+            newUserForm.controls['lastName'].errors?.['minlength'] &&
+            newUserForm.controls['lastName'].touched
+          ">
+                <span class="validationAlert">Lastname must be at least 2 characters</span>
+            </div>
+            <div *ngIf="
+            newUserForm.controls['lastName'].errors?.['maxlength'] &&
+            newUserForm.controls['lastName'].touched
+          ">
+                <span class="validationAlert">max symbols count - 50</span>
+            </div>
+            <div *ngIf="
+            newUserForm.controls['lastName'].errors?.['pattern'] &&
+            newUserForm.controls['lastName'].touched
+          ">
+                <span class="validationAlert">must include only letters</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="userName"> Username*</label>
+            <input class="form-control" name="userName" formControlName="userName" placeholder="Username*" />
+
+            <div *ngIf="newUserForm.controls['userName'].errors?.['required'] &&
+                        newUserForm.controls['userName'].touched">
+                <span class="validationAlert">Username is required</span>
+
+            </div>
+            <div *ngIf="
+                newUserForm.controls['userName'].errors?.['minlength'] &&
+                newUserForm.controls['userName'].touched
+              ">
+                <span class="validationAlert">Username must be at least 3 characters</span>
+            </div>
+            <div *ngIf="
+                newUserForm.controls['userName'].errors?.['maxlength'] &&
+                newUserForm.controls['userName'].touched
+              ">
+                <span class="validationAlert">max symbols count - 50</span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button *ngIf="pageMode === 'create'" type="button" class="submitBtn" [disabled]="!newUserForm.valid || isSaveButtonDisabled"
+                (click)="onAddUser()">Add</button>
+            <button *ngIf="pageMode === 'edit'" type="button" class="submitBtn"
+                [disabled]="!newUserForm.valid || !newUserForm.dirty || isSaveButtonDisabled"
+                (click)="onChangeUserDetails(newUserForm.value)">Save</button>
+            <button type="button" class="cancelBtn" (click)="onNavigateToHomePage()">Cancel</button>
+        </div>
+
+    </form>
+</div>

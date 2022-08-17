@@ -1,0 +1,110 @@
+.all {
+    width : 85%;
+    margin: auto;
+}
+
+table {
+    border          : solid 1px rgba(0, 169, 189, 0.5);
+    width           : 100%;
+    border-radius   : 5px;
+    padding         : 2px;
+    background-color: rgba(0, 169, 189, 0.1);
+}
+
+table th {
+    color           : white;
+    background-color: rgba(0, 169, 189, 0.6);
+    font-size       : 12px;
+    padding         : 18px 12px;
+    width           : 200px;
+    text-align      : left;
+    border          : solid 1px rgba(0, 169, 189, 0.5);
+    border-radius   : 4px;
+}
+
+table td {
+    font-size       : 10px;
+    font-size       : 12px;
+    padding         : 10px 12px;
+    width           : 200px;
+    text-align      : left;
+    border          : solid 1px rgba(0, 169, 189, 0.25);
+    border-radius   : 4px;
+    background-color: white;
+}
+
+.createBtn,
+.createBtn:hover,
+.createBtn:focus {
+    color           : white;
+    display         : flex;
+    cursor          : pointer;
+    background-color: rgba(0, 169, 189, 0.5);
+    padding         : 10px 30px;
+    margin          : 15px 0;
+    border          : none;
+    border-radius   : 5px;
+    font-weight     : 500;
+    margin-left     : auto;
+}
+
+.createBtn:hover {
+    background-color: rgba(0, 169, 189, 0.6);
+}
+
+.createBtn:focus {
+    background-color: rgba(0, 169, 189, 0.7);
+}
+
+.action {
+    display: inline-block;
+    margin : 0 5px;
+}
+
+.actionsCell {
+    max-width: 100px;
+}
+
+
+
+th.actionsHeading {
+    max-width: 130px;
+}
+
+
+.actionsCell a,
+.actionsCell a:hover {
+    text-align      : center;
+    width           : 15%;
+    min-width       : 28px;
+    text-decoration : none;
+    cursor          : pointer;
+    background-color: rgba(0, 169, 189, 0.5);
+    border-radius   : 3px;
+    color           : white;
+    padding         : 3px 6px;
+    margin          : 2px;
+    transition      : 150ms;
+}
+
+.actionsCell a:hover {
+    background-color: rgba(0, 169, 189, 0.8);
+}
+
+.actionsCell span,
+.actionsCell span:hover {
+    text-align      : center;
+    width           : 45px;
+    cursor          : pointer;
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius   : 3px;
+    color           : white;
+    padding         : 3px 6px;
+    margin          : 2px;
+    transition      : 150ms;
+}
+
+.actionsCell span:hover {
+    background-color: red;
+    box-shadow      : red 0px 0px 4px 1px;
+}
