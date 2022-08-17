@@ -19,7 +19,7 @@ export class UsersDataService {
             name: `${user.firstName} ${user.lastName}`,
             username: user.userName,
         };
-        
+
         return this.http.post("https://jsonplaceholder.typicode.com/users", createdUser)
     }
 
