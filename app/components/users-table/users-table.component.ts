@@ -26,8 +26,8 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     this.usersList = this.usersList?.filter((user) => {
       return user.id !== id;
     })
-    this.dataSubscribtions.push(this.dataService.deleteUser(id).subscribe(res => {
-      console.log("user", id, "deleted", res);
+    this.dataSubscribtions.push(this.dataService.deleteUser(id).subscribe(() => {
+      console.log("user", id, "deleted");
     }));
   }
 
