@@ -16,12 +16,12 @@ type pageModeType = 'edit' | 'view' | 'create';
 
 export class UserFormComponent implements OnInit {
 
+  public isSaveButtonDisabled: boolean = false;
   public pageMode: pageModeType = 'create';
   public currentUser: User = new User();
   public newUserForm!: FormGroup;
-  public isSaveButtonDisabled: boolean = false
 
-  private dataSubscribtion = new Subscription;
+  private dataSubscribtions = new Subscription;
 
   constructor(
     private dataService: UsersDataService,
@@ -43,16 +43,16 @@ export class UserFormComponent implements OnInit {
   private initCurrentUser() {
     let idInUrl = +this.activeRoute.snapshot.params["id"];
 
-    this.dataService.getUsersListFromBack().subscribe(users => {
+    this, this.dataSubscribtions.add(this.dataService.getUsersListFromBack().subscribe(users => {
       let userFromBack: userDataFromBack | undefined = users.find((user) => {
-        return user.id === idInUrl
+        return user.id === idInUrl;
       });
 
       if (userFromBack) {
         this.currentUser = this.dataService.convertUser(userFromBack);
-        this.initFormValue()
-      }
-    })
+        this.initFormValue();
+      } else this.onNavigateToHomePage()
+    }))
   }
 
   private initForm() {
@@ -78,25 +78,25 @@ export class UserFormComponent implements OnInit {
       ]
       ],
     });
-  }
+  };
 
   private initFormValue() {
     if (this.pageMode === 'edit' || this.pageMode === 'view') {
+      console.log(this.currentUser);
       this.newUserForm.patchValue(this.currentUser);
-    }
+    };
     if (this.pageMode === 'view') {
       this.newUserForm.disable();
-    }
-  }
+    };
+  };
 
   onAddUser(): void {
     this.isSaveButtonDisabled = true;
     this.currentUser = this.newUserForm.value;
-    this.dataSubscribtion.add(this.dataService.addUser(this.currentUser).subscribe(() => {
-      this.isSaveButtonDisabled = false;
+    this.dataSubscribtions.add(this.dataService.addUser(this.currentUser).subscribe(() => {
       this.onNavigateToHomePage();
     }));
-  }
+  };
 
   onChangeUserDetails(formValue: { firstName: string; lastName: string, userName: string }) {
     this.isSaveButtonDisabled = true;
@@ -109,17 +109,17 @@ export class UserFormComponent implements OnInit {
       ...this.newUserForm.value
     };
 
-    this.dataSubscribtion?.add(this.dataService.changeUser(this.currentUser).subscribe(() => {
-      this.isSaveButtonDisabled = false;
+    this.dataSubscribtions?.add(this.dataService.changeUser(this.currentUser).subscribe(() => {
       this.onNavigateToHomePage();
     }));
   }
 
   onNavigateToHomePage() {
+    this.isSaveButtonDisabled = false;
     this.router.navigate([""]);
   }
 
   ngOnDestroy() {
-    this.dataSubscribtion?.unsubscribe()
+    this.dataSubscribtions?.unsubscribe();
   }
 }
