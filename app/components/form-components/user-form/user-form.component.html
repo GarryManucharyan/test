@@ -19,7 +19,7 @@
             newUserForm.controls['firstName'].errors?.['minlength'] &&
             newUserForm.controls['firstName'].touched
           ">
-                <span class="validationAlert">First Name must be at least 2 characters</span>
+                <span class="validationAlert">At least 2 characters</span>
             </div>
             <div *ngIf="
             newUserForm.controls['firstName'].errors?.['maxlength'] &&
@@ -31,7 +31,7 @@
             newUserForm.controls['firstName'].errors?.['pattern'] &&
             newUserForm.controls['firstName'].touched
           ">
-                <span class="validationAlert">must include only letters</span>
+                <span class="validationAlert">Letters only</span>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
             newUserForm.controls['lastName'].errors?.['minlength'] &&
             newUserForm.controls['lastName'].touched
           ">
-                <span class="validationAlert">Lastname must be at least 2 characters</span>
+                <span class="validationAlert">At least 2 characters</span>
             </div>
             <div *ngIf="
             newUserForm.controls['lastName'].errors?.['maxlength'] &&
@@ -59,7 +59,7 @@
             newUserForm.controls['lastName'].errors?.['pattern'] &&
             newUserForm.controls['lastName'].touched
           ">
-                <span class="validationAlert">must include only letters</span>
+                <span class="validationAlert">Letters only</span>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
                 newUserForm.controls['userName'].errors?.['minlength'] &&
                 newUserForm.controls['userName'].touched
               ">
-                <span class="validationAlert">Username must be at least 3 characters</span>
+                <span class="validationAlert">At least 3 characters</span>
             </div>
             <div *ngIf="
                 newUserForm.controls['userName'].errors?.['maxlength'] &&
