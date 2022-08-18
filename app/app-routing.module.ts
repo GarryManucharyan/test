@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
 import { UserFormComponent } from './components/form-components/user-form/user-form.component';
+import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
   { path: "", component: UsersTableComponent, pathMatch: "full" },

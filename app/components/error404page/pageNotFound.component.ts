@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './pageNotFound.component.html',
   styleUrls: ['./pageNotFound.component.scss']
 })
-export class PageNotFoundComponent { }
+export class PageNotFoundComponent {}

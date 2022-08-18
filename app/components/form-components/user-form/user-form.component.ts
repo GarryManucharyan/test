@@ -82,7 +82,6 @@ export class UserFormComponent implements OnInit {
 
   private initFormValue() {
     if (this.pageMode === 'edit' || this.pageMode === 'view') {
-      console.log(this.currentUser);
       this.newUserForm.patchValue(this.currentUser);
     };
     if (this.pageMode === 'view') {

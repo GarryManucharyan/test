@@ -42,7 +42,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.dataSubscribtions.forEach((subscription) => {
+    this.dataSubscribtions.forEach((subscription) => {         // used as demonstrative method of unsubscribing
       subscription.unsubscribe();
     });
   }

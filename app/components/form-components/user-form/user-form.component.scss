@@ -1,8 +1,21 @@
 .all {
-    display    : inline-block;
-    padding    : 0;
-    width      : 25%;
-    margin-left: 100px;
+    display         : inline-block;
+    background-color: rgba(0, 169, 189, 0.13);
+    padding         : 15px 10px 30px;
+    border-radius   : 6px;
+    width           : 25%;
+    margin-left     : 100px;
+}
+
+form {
+    color     : rgba(0, 0, 0, 0.7);
+    padding   : 0;
+    text-align: center;
+}
+
+input:disabled {
+    background-color: rgba(255, 255, 255, 0);
+    border-color    : rgba(0, 0, 0, 0.04);
 }
 
 .reactiveForm h4 {
@@ -72,7 +85,7 @@
 .cancelBtn:focus {
     display         : flex;
     cursor          : pointer;
-    background-color: rgb(220, 220, 220);
+    background-color: rgba(220, 220, 220, 0.6);
     padding         : 10px;
     margin-left     : 5px;
     border          : none;
@@ -82,7 +95,7 @@
 }
 
 .cancelBtn:hover {
-    background-color: rgb(200, 200, 200);
+    background-color: rgba(200, 200, 200, 0.65);
 }
 
 .cancelBtn:focus {
