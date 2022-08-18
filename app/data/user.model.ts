@@ -13,7 +13,7 @@ export class User {
 }
 
 export type userDataFromBack = {
-    id: number,
     username: string,
-    name: string
+    name: string,
+    id: number
 };
