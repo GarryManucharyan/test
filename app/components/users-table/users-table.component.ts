@@ -1,6 +1,6 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User } from 'src/app/data/user.model';
+import { User, userDataFromBack } from 'src/app/data/user.model';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initUsersList();
-  }
+  };
 
   onDeleteUserById(id: number): void {
     this.usersList = this.usersList?.filter((user) => {
@@ -29,22 +29,18 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     this.dataSubscribtions.push(this.dataService.deleteUser(id).subscribe(() => {
       console.log("user", id, "deleted");
     }));
-  }
+  };
 
-  initUsersList() {
-    this.dataSubscribtions.push(this.dataService.getUsersListFromBack()
-      .subscribe(users => {
-        this.usersList = users.map((user: any) => {
-          return this.dataService.convertUser(user);
-        });
-      })
-    )
-  }
+  initUsersList(): void {
+    this.dataSubscribtions.push(this.dataService.getUsersListFromBack().subscribe(users => {
+      this.usersList = users.map((user: userDataFromBack) => {
+        return this.dataService.convertUser(user);
+      });
+    }));
+  };
 
   ngOnDestroy() {
-    this.dataSubscribtions.forEach((subscription) => {         // used as demonstrative method of unsubscribing
-      subscription.unsubscribe();
-    });
+    this.dataSubscribtions.forEach(subscription => subscription.unsubscribe());        // used as demonstrative method of unsubscribing
   }
 }
 

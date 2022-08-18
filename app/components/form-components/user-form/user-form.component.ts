@@ -31,31 +31,31 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.activeRoute.snapshot.url[0].path !== "create") this.initCurrentUser();
     this.initPageMode();
     this.initForm();
+    if (this.activeRoute.snapshot.url[0].path !== "create") this.initCurrentUser();
   }
 
-  private initPageMode() {
+  private initPageMode(): void {
     this.pageMode = this.activeRoute.snapshot.url[0].path as pageModeType;
   }
 
-  private initCurrentUser() {
-    let idInUrl = +this.activeRoute.snapshot.params["id"];
+  private initCurrentUser(): void {
+    let idInUrl: number = Number(this.activeRoute.snapshot.params["id"]);
 
-    this, this.dataSubscribtions.add(this.dataService.getUsersListFromBack().subscribe(users => {
+    this.dataSubscribtions.add(this.dataService.getUsersListFromBack().subscribe(users => {
       let userFromBack: userDataFromBack | undefined = users.find((user) => {
         return user.id === idInUrl;
       });
 
-      if (userFromBack) {
+      if (userFromBack != undefined) {
         this.currentUser = this.dataService.convertUser(userFromBack);
         this.initFormValue();
       } else this.router.navigate(["error404"])
     }))
   }
 
-  private initForm() {
+  private initForm(): void {
     this.newUserForm = this.fb.group({
       firstName: ['', [
         Validators.required,
@@ -80,7 +80,7 @@ export class UserFormComponent implements OnInit {
     });
   };
 
-  private initFormValue() {
+  private initFormValue(): void {
     if (this.pageMode === 'edit' || this.pageMode === 'view') {
       this.newUserForm.patchValue(this.currentUser);
     };
@@ -91,18 +91,13 @@ export class UserFormComponent implements OnInit {
 
   onAddUser(): void {
     this.isSaveButtonDisabled = true;
-    this.currentUser = this.newUserForm.value;
-    this.dataSubscribtions.add(this.dataService.addUser(this.currentUser).subscribe(() => {
+    this.dataSubscribtions.add(this.dataService.addUser(this.newUserForm.value).subscribe(() => {
       this.onNavigateToHomePage();
     }));
   };
 
-  onChangeUserDetails(formValue: { firstName: string; lastName: string, userName: string }) {
+  onChangeUserDetails() {
     this.isSaveButtonDisabled = true;
-    const { firstName, lastName, userName } = formValue;
-    this.currentUser.firstName = firstName;
-    this.currentUser.lastName = lastName;
-    this.currentUser.userName = userName;
     this.currentUser = {
       id: this.currentUser.id,
       ...this.newUserForm.value
@@ -119,6 +114,6 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.dataSubscribtions?.unsubscribe();
+    this.dataSubscribtions.unsubscribe();
   }
 }

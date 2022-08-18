@@ -31,8 +31,8 @@ export class UsersDataService {
     getUsersListFromBack(): Observable<userDataFromBack[]> {
         return this.http.get<userDataFromBack[]>(environment.url)
     }
-    getUserByIdFromBack(id: number): Observable<any> {
-        return this.http.get<User>(`${environment.url}/${id}`)
+    getUserByIdFromBack(id: number): Observable<userDataFromBack> {
+        return this.http.get<userDataFromBack>(`${environment.url}/${id}`)
     }
     //#endregion
     //#region helpers
@@ -52,7 +52,7 @@ export class UsersDataService {
             name: `${user.firstName} ${user.lastName}`,
             username: user.userName,
             id: user.id
-        };
+        } as userDataFromBack;
     }
 
     //#endregion

@@ -91,7 +91,7 @@
                 (click)="onAddUser()">Add</button>
             <button *ngIf="pageMode === 'edit'" type="button" class="submitBtn"
                 [disabled]="!newUserForm.valid || !newUserForm.dirty || isSaveButtonDisabled"
-                (click)="onChangeUserDetails(newUserForm.value)">Save</button>
+                (click)="onChangeUserDetails()">Save</button>
             <button type="button" class="cancelBtn" (click)="onNavigateToHomePage()">Cancel</button>
         </div>
 
