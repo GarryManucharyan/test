@@ -75,39 +75,41 @@ th.actionsHeading {
 
 .actionsCell a,
 .actionsCell a:hover {
+    cursor          : pointer;
     text-align      : center;
     width           : 15%;
     min-width       : 28px;
     text-decoration : none;
-    cursor          : pointer;
-    background-color: rgba(0, 169, 189, 0.5);
+    background-color: rgba(0, 169, 189, 0);
     border-radius   : 3px;
-    color           : white;
+    color           : rgb(0, 169, 189);
     padding         : 3px 6px;
     margin          : 2px;
-    transition      : 150ms;
+    transition      : 300ms;
 }
 
 .actionsCell a:hover {
+    color           : white;
     background-color: rgba(0, 190, 210, 0.9);
 }
 
 .actionsCell button,
 .actionsCell button:hover {
+    color           : red;
     box-sizing      : border-box;
     text-align      : center;
     min-width       : 56px;
     cursor          : pointer;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(252, 97, 97, 0);
     border          : none;
     border-radius   : 3px;
-    color           : white;
     padding         : 3px 6px;
     margin          : 2px;
-    transition      : 150ms;
+    transition      : 300ms;
 }
 
 .actionsCell button:hover {
+    color           : white;
     background-color: red;
     box-shadow      : red 0px 0px 4px 1px;
 }
