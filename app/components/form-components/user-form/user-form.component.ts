@@ -1,12 +1,12 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { User, userDataFromBack } from 'src/app/data/user.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/data/user.model';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-type modeType = 'edit' | 'view' | 'create';
+type pageModeType = 'edit' | 'view' | 'create';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +16,7 @@ type modeType = 'edit' | 'view' | 'create';
 
 export class UserFormComponent implements OnInit {
 
-  public pageMode: modeType = 'create';
+  public pageMode: pageModeType = 'create';
   public currentUser: User = new User();
   public newUserForm!: FormGroup;
   public isSaveButtonDisabled: boolean = false
@@ -37,29 +37,22 @@ export class UserFormComponent implements OnInit {
   }
 
   private initPageMode() {
-    this.pageMode = this.activeRoute.snapshot.url[0].path as modeType;
+    this.pageMode = this.activeRoute.snapshot.url[0].path as pageModeType;
   }
 
   private initCurrentUser() {
     let idInUrl = +this.activeRoute.snapshot.params["id"];
-    let currentUser: User | undefined = this.dataService.usersList.find((user) => {
-      return user.id === idInUrl
-    })
-    if (currentUser) {
-      this.currentUser = currentUser;
-      this.dataService.currentUser = currentUser
-    } else {
-      this.dataSubscribtion.add(this.dataService.getUserByIdFromBack(idInUrl).subscribe(user => {
-        this.dataService.currentUser = this.userConverter(user);
-        this.currentUser = this.dataService.currentUser;
-        this.newUserForm.patchValue(this.currentUser);
-      }))
-    }
-  }
 
-  private userConverter(user: { name: string, username: string, id: number }) {
-    const convertedUser = this.dataService.convertUser(user);
-    return convertedUser;
+    this.dataService.getUsersListFromBack().subscribe(users => {
+      let userFromBack: userDataFromBack | undefined = users.find((user) => {
+        return user.id === idInUrl
+      });
+
+      if (userFromBack) {
+        this.currentUser = this.dataService.convertUser(userFromBack);
+        this.initFormValue()
+      }
+    })
   }
 
   private initForm() {
@@ -85,6 +78,9 @@ export class UserFormComponent implements OnInit {
       ]
       ],
     });
+  }
+
+  private initFormValue() {
     if (this.pageMode === 'edit' || this.pageMode === 'view') {
       this.newUserForm.patchValue(this.currentUser);
     }
@@ -93,11 +89,9 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-
   onAddUser(): void {
     this.isSaveButtonDisabled = true;
     this.currentUser = this.newUserForm.value;
-    this.currentUser.id = this.dataService.createUniqueId();
     this.dataSubscribtion.add(this.dataService.addUser(this.currentUser).subscribe(() => {
       this.isSaveButtonDisabled = false;
       this.onNavigateToHomePage();
@@ -114,11 +108,8 @@ export class UserFormComponent implements OnInit {
       id: this.currentUser.id,
       ...this.newUserForm.value
     };
-    let currentUserindex = this.dataService.usersList.findIndex((user) => {
-      return user.id === this.currentUser.id
-    })
-    this.dataService.usersList[currentUserindex] = this.currentUser as User;
-    this.dataSubscribtion?.add(this.dataService.changeUser(this.currentUser).subscribe(res => {
+
+    this.dataSubscribtion?.add(this.dataService.changeUser(this.currentUser).subscribe(() => {
       this.isSaveButtonDisabled = false;
       this.onNavigateToHomePage();
     }));

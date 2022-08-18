@@ -11,3 +11,9 @@ export class User {
         this.userName = userName
     }
 }
+
+export type userDataFromBack = {
+    id: number,
+    username: string,
+    name: string
+};

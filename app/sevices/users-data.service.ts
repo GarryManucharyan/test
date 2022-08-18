@@ -1,49 +1,35 @@
+import { User, userDataFromBack } from "../data/user.model";
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from "../data/user.model";
 import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UsersDataService {
-    currentUser = new User();
-    usersList: User[] = [];
 
     constructor(private http: HttpClient) { }
 
     //#region  Setters
 
     addUser(user: User) {
-        const createdUser: { name: string, username: string } = {
-            name: `${user.firstName} ${user.lastName}`,
-            username: user.userName,
-        };
-        return this.http.post(environment.url, createdUser)
+        return this.http.post(environment.url, this.convertUserBack(user))
     }
 
     deleteUser(id: number) {
-        const index: number = this.usersList.findIndex((item) => {
-            return item.id === id
-        })
-        this.usersList.splice(index, 1);
         return this.http.delete(`${environment.url}/${id}`)
     }
 
     changeUser(user: User) {
-        const index: number = this.usersList.findIndex((item) => {
-            return item.id === user.id
-        })
-        this.usersList[index] = user;
         return this.http.patch(`${environment.url}/${user.id}`, this.convertUserBack(user))
     }
 
     //#endregion
     //#region Getters
 
-    getUsersListFromBack(): Observable<User[]> {
-        return this.http.get<User[]>(environment.url)
+    getUsersListFromBack(): Observable<userDataFromBack[]> {
+        return this.http.get<userDataFromBack[]>(environment.url)
     }
     getUserByIdFromBack(id: number): Observable<any> {
         return this.http.get<User>(`${environment.url}/${id}`)
@@ -52,8 +38,13 @@ export class UsersDataService {
     //#region helpers
 
 
-    convertUser(user: { name: string, username: string, id: number }): User {
-        return new User(user.id, user.name.split(" ")[0], user.name.split(" ")[1], user.username);
+    convertUser(user: { id: number, username: string, name: string }): User {
+        return new User(
+            user.id,
+            user.name.split(" ")[0],
+            user.name.split(" ")[1],
+            user.username
+        );
     }
 
     convertUserBack(user: User) {
@@ -64,10 +55,6 @@ export class UsersDataService {
         };
     }
 
-    createUniqueId(): number {
-        let id = Math.floor(Math.random() * 100000000);
-        return !this.usersList.find((user) => user.id === id) ? id : this.createUniqueId()
-    }
     //#endregion
 }
 

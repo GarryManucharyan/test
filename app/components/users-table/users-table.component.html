@@ -12,8 +12,8 @@
             <td>{{user.lastName}}</td>
             <td><i>{{user.userName}}</i></td>
             <td class="actionsCell">
-                <a class="action" [routerLink]="['view', user.id]" (click)="onShowUserDetails(user)">View </a>
-                <a class="action" [routerLink]="['edit', user.id]" (click)="onShowUserDetails(user)">Edit </a>
+                <a class="action" [routerLink]="['view', user.id]" >View </a>
+                <a class="action" [routerLink]="['edit', user.id]" >Edit </a>
                 <span class="action" (click)="onDeleteUserById(user.id)">Delete</span>
             </td>
         </tr>

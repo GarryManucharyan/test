@@ -31,9 +31,9 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     }));
   }
 
-  onShowUserDetails(user: User) {
-    this.dataService.currentUser = user;
-  }
+  // onShowUserDetails(user: User) {
+  //   // this.dataService.currentUser = user;
+  // }
 
   initUsersList() {
     this.dataSubscribtions.push(this.dataService.getUsersListFromBack()
