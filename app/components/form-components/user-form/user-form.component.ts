@@ -51,7 +51,7 @@ export class UserFormComponent implements OnInit {
       if (userFromBack) {
         this.currentUser = this.dataService.convertUser(userFromBack);
         this.initFormValue();
-      } else this.onNavigateToHomePage()
+      } else this.router.navigate(["error404"])
     }))
   }
 
