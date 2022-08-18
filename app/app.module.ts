@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { UserFormComponent } from './components/form-components/user-form/user-form.component';
+import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { UserFormComponent } from './components/form-components/user-form/user-f
     AppComponent,
     UsersTableComponent,
     UserFormComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     FormsModule,
