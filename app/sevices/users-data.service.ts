@@ -1,5 +1,5 @@
-import { User, userDataFromBack } from "../data/user.model";
 import { environment } from 'src/environments/environment';
+import { User, userModelBE } from "../data/user.model";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -22,17 +22,17 @@ export class UsersDataService {
     }
 
     changeUser(user: User) {
-        return this.http.patch(`${environment.url}/${user.id}`, this.convertUserBack(user))
+        return this.http.put(`${environment.url}/${user.id}`, this.convertUserBack(user))
     }
 
     //#endregion
     //#region Getters
 
-    getUsersListFromBack(): Observable<userDataFromBack[]> {
-        return this.http.get<userDataFromBack[]>(environment.url)
+    getUsersBE(): Observable<userModelBE[]> {
+        return this.http.get<userModelBE[]>(environment.url)
     }
-    getUserByIdFromBack(id: number): Observable<userDataFromBack> {
-        return this.http.get<userDataFromBack>(`${environment.url}/${id}`)
+    getUserByIdBE(id: number): Observable<userModelBE> {
+        return this.http.get<userModelBE>(`${environment.url}/${id}`)
     }
     //#endregion
     //#region helpers
@@ -52,7 +52,7 @@ export class UsersDataService {
             name: `${user.firstName} ${user.lastName}`,
             username: user.userName,
             id: user.id
-        } as userDataFromBack;
+        } as userModelBE;
     }
 
     //#endregion

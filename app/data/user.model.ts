@@ -12,7 +12,7 @@ export class User {
     }
 }
 
-export type userDataFromBack = {
+export type userModelBE = {
     username: string,
     name: string,
     id: number

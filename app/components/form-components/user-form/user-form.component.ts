@@ -1,6 +1,6 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { User, userDataFromBack } from 'src/app/data/user.model';
+import { User, userModelBE } from 'src/app/data/user.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
@@ -43,8 +43,8 @@ export class UserFormComponent implements OnInit {
   private initCurrentUser(): void {
     let idInUrl: number = Number(this.activeRoute.snapshot.params["id"]);
 
-    this.dataSubscribtions.add(this.dataService.getUsersListFromBack().subscribe(users => {
-      let userFromBack: userDataFromBack | undefined = users.find((user) => {
+    this.dataSubscribtions.add(this.dataService.getUsersBE().subscribe(users => {
+      let userFromBack: userModelBE | undefined = users.find((user) => {
         return user.id === idInUrl;
       });
 

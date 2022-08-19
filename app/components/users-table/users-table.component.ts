@@ -1,6 +1,6 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User, userDataFromBack } from 'src/app/data/user.model';
+import { User, userModelBE } from 'src/app/data/user.model';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -32,8 +32,8 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   };
 
   initUsersList(): void {
-    this.dataSubscribtions.push(this.dataService.getUsersListFromBack().subscribe(users => {
-      this.usersList = users.map((user: userDataFromBack) => {
+    this.dataSubscribtions.push(this.dataService.getUsersBE().subscribe(users => {
+      this.usersList = users.map((user: userModelBE) => {
         return this.dataService.convertUser(user);
       });
     }));
