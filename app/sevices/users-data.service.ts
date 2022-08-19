@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 export class UsersDataService {
 
     constructor(private http: HttpClient) { }
-
     //#region Setters
 
     addUser(user: User) {
