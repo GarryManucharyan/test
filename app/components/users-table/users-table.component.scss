@@ -13,7 +13,7 @@ table {
 
 table th {
     color           : white;
-    background-color: rgba(0, 190, 210, 0.7);
+    background-color: rgba(0, 170, 190, 0.4);
     font-size       : 12px;
     padding         : 18px 12px;
     width           : 200px;
@@ -33,45 +33,18 @@ table td {
     background-color: white;
 }
 
-.createBtn,
-.createBtn:hover,
-.createBtn:focus {
-    cursor          : pointer;
-    color           : white;
-    display         : flex;
-    background-color: rgba(0, 169, 189, 0.6);
-    padding         : 10px 30px;
-    margin          : 15px 0;
-    border          : none;
-    border-radius   : 5px;
-    font-weight     : 500;
-    margin-left     : auto;
-    transition      : 150ms;
-}
-
-.createBtn:hover {
-    background-color: rgba(0, 190, 210, 0.9);
-}
-
-.createBtn:focus {
-    background-color: rgba(0, 169, 189, 0.7);
-}
-
 .action {
     display: inline-block;
     margin : 0 5px;
 }
 
 .actionsCell {
-    max-width: 100px;
+    max-width: 130px;
 }
-
-
 
 th.actionsHeading {
     max-width: 130px;
 }
-
 
 .actionsCell a,
 .actionsCell a:hover {
@@ -112,4 +85,16 @@ th.actionsHeading {
     color           : white;
     background-color: red;
     box-shadow      : red 0px 0px 4px 1px;
+}
+
+.emptyTableAlert {
+    color           : white;
+    background-color: rgba(0, 169, 189, 0.4);
+    width           : 60%;
+    padding         : 100px 20px;
+    text-align      : center;
+    font-style      : italic;
+    border-radius   : 15px;
+    margin          : auto;
+    margin-top      : 50px;
 }

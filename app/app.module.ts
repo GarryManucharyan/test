@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { UsersTableComponent } from './components/users-table/users-table.component';
 import { UserFormComponent } from './components/form-components/user-form/user-form.component';
 import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
+import { AppComponent } from './app.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { PageNotFoundComponent } from './components/error404page/pageNotFound.co
     UsersTableComponent,
     UserFormComponent,
     PageNotFoundComponent,
+    WrapperComponent,
   ],
   imports: [
     FormsModule,

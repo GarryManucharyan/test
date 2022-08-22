@@ -1,14 +1,14 @@
 import { UserFormComponent } from './components/form-components/user-form/user-form.component';
 import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
-import { UsersTableComponent } from './components/users-table/users-table.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
-  { path: "", component: UsersTableComponent, pathMatch: "full" },
-  { path: "view/:id", component: UserFormComponent },
-  { path: "edit/:id", component: UserFormComponent },
-  { path: "create", component: UserFormComponent },
+  { path: "", component: WrapperComponent, pathMatch: "full" },
+  { path: "view/:id", component: UserFormComponent, data: { mode: 'view' } },
+  { path: "edit/:id", component: UserFormComponent, data: { mode: 'edit' } },
+  { path: "create", component: UserFormComponent, data: { mode: 'create' } },
   { path: "**", component: PageNotFoundComponent }
 ]
 

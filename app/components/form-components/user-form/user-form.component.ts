@@ -1,10 +1,10 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { User, userModelBE } from 'src/app/data/user.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { catchError, Subscription } from 'rxjs';
+import { User } from 'src/app/data/user.model';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 type pageModeType = 'edit' | 'view' | 'create';
 
@@ -17,9 +17,9 @@ type pageModeType = 'edit' | 'view' | 'create';
 export class UserFormComponent implements OnInit {
 
   public isSaveButtonDisabled: boolean = false;
-  public pageMode: pageModeType = 'create';
-  public currentUser: User = new User();
+  public pageMode!: pageModeType;
   public newUserForm!: FormGroup;
+  public currentUser!: User;
 
   private dataSubscribtions = new Subscription;
 
@@ -33,26 +33,28 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
     this.initPageMode();
     this.initForm();
-    if (this.activeRoute.snapshot.url[0].path !== "create") this.initCurrentUser();
+    if (this.pageMode !== "create") {
+      this.initCurrentUser()
+    };
+    console.log(this.activeRoute);
   }
 
   private initPageMode(): void {
-    this.pageMode = this.activeRoute.snapshot.url[0].path as pageModeType;
+    this.pageMode = this.activeRoute.snapshot.data["mode"] as pageModeType;
   }
 
   private initCurrentUser(): void {
-    let idInUrl: number = Number(this.activeRoute.snapshot.params["id"]);
+    let userId: number = Number(this.activeRoute.snapshot.params["id"]);
 
-    this.dataSubscribtions.add(this.dataService.getUsersBE().subscribe(users => {
-      let userFromBack: userModelBE | undefined = users.find((user) => {
-        return user.id === idInUrl;
-      });
-
-      if (userFromBack != undefined) {
-        this.currentUser = this.dataService.convertUser(userFromBack);
+    this.dataService.getUserById(userId)
+      .pipe(catchError(err => {
+        this.router.navigate(["error404"])
+        throw err;
+      }))
+      .subscribe(user => {
+        this.currentUser = this.dataService.convertToUserModel(user);
         this.initFormValue();
-      } else this.router.navigate(["error404"])
-    }))
+      });
   }
 
   private initForm(): void {
@@ -91,9 +93,14 @@ export class UserFormComponent implements OnInit {
 
   onAddUser(): void {
     this.isSaveButtonDisabled = true;
-    this.dataSubscribtions.add(this.dataService.addUser(this.newUserForm.value).subscribe(() => {
-      this.onNavigateToHomePage();
-    }));
+    this.dataSubscribtions.add(
+      this.dataService.add(this.newUserForm.value)
+        .pipe(catchError(err => {
+          this.isSaveButtonDisabled = false
+          return err
+        })).subscribe(() => {
+          this.onNavigateToHomePage();
+        }));
   };
 
   onChangeUserDetails() {
@@ -103,9 +110,14 @@ export class UserFormComponent implements OnInit {
       ...this.newUserForm.value
     };
 
-    this.dataSubscribtions?.add(this.dataService.changeUser(this.currentUser).subscribe(() => {
-      this.onNavigateToHomePage();
-    }));
+    this.dataSubscribtions?.add(
+      this.dataService.changeDetails(this.currentUser)
+        .pipe(catchError(err => {
+          this.isSaveButtonDisabled = false
+          return err;
+        })).subscribe(() => {
+          this.onNavigateToHomePage();
+        }));
   }
 
   onNavigateToHomePage() {

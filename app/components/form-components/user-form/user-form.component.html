@@ -3,7 +3,7 @@
 
         <h4 *ngIf="pageMode === 'create'">Create User</h4>
         <h4 *ngIf="pageMode === 'edit'">Edit User</h4>
-        <h4 *ngIf="pageMode === 'view'">{{ currentUser.firstName }} {{ currentUser.lastName }}</h4>
+        <h4 *ngIf="pageMode === 'view' && currentUser" >{{ currentUser.firstName }} {{ currentUser.lastName }}</h4>
 
         <div class="form-group">
             <label for="firstName"> First Name*</label>

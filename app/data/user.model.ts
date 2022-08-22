@@ -1,18 +1,12 @@
-export class User {
-    constructor(
-        public id: number = 0,
-        public firstName: string = "",
-        public lastName: string = "",
-        public userName: string = "",
-    ) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName
-    }
+export interface User {
+    id: number;
+    firstName: string;
+    lastName: string;
+    userName: string;
+    [key: string]: any;
 }
 
-export type userModelBE = {
+export type userResponseModel = {
     username: string,
     name: string,
     id: number

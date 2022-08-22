@@ -1,0 +1,24 @@
+.createBtn,
+.createBtn:hover,
+.createBtn:focus {
+    cursor          : pointer;
+    color           : white;
+    display         : flex;
+    background-color: rgba(0, 170, 190, 0.5);
+    padding         : 10px 30px;
+    margin          : 15px 0;
+    border          : none;
+    border-radius   : 5px;
+    font-weight     : 500;
+    margin-left     : auto;
+    transition      : 150ms;
+    margin-right    : 7.5%;
+}
+
+.createBtn:hover {
+    background-color: rgba(0, 190, 210, 0.9);
+}
+
+.createBtn:focus {
+    background-color: rgba(0, 169, 189, 0.7);
+}
