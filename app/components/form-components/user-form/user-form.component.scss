@@ -65,45 +65,94 @@ input:disabled {
     border-radius   : 5px;
     font-weight     : 500;
     margin-left     : auto;
-    transition      : 150ms;
+    transition      : 250ms;
 }
 
 .submitBtn:hover {
-    background-color: rgba(0, 169, 189, 0.6);
+    color           : rgba(0, 169, 189, 0.8);
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow      : 0 0 8px 1px;
 }
 
 .submitBtn:focus {
-    background-color: rgba(0, 169, 189, 0.7);
+    transform: scale(0.9);
 }
 
 .submitBtn:disabled {
     cursor          : default;
     background-color: rgba(0, 169, 189, 0.25);
-    border          : solid 1px lightgray;
+    border          : none;
+    box-shadow      : none;
+    color           : white;
+}
+
+.updateBtn,
+.updateBtn:hover,
+.updateBtn:focus {
+    color           : white;
+    display         : flex;
+    cursor          : pointer;
+    background-color: rgba(0, 189, 9, 0.6);
+    padding         : 10px;
+    margin          : 0 5px;
+    border          : none;
+    border-radius   : 5px;
+    font-weight     : 500;
+    margin-left     : auto;
+    transition      : 250ms;
+}
+
+.updateBtn:hover {
+    color           : rgba(0, 189, 9, 0.6);
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow      : 0 0 8px 1px rgba(0, 189, 9, 0.6);
+}
+
+
+.updateBtn:focus {
+    box-shadow      : 0 0 8px 2px rgba(0, 189, 9, 0.9);
+    transform: scale(0.9);
+
+}
+
+.updateBtn:disabled {
+    cursor          : default;
+    color           : white;
+    background-color: rgba(0, 189, 9, 0.2);
+    box-shadow      : none;
 }
 
 .cancelBtn,
 .cancelBtn:hover,
 .cancelBtn:focus {
+    color           : white;
     display         : flex;
     cursor          : pointer;
-    background-color: rgba(220, 220, 220, 0.6);
+    background-color: rgba(255, 0, 0, 0.4);
     padding         : 10px;
     margin-left     : 5px;
     border          : none;
     border-radius   : 5px;
     font-weight     : 500;
+    transition      : 250ms;
 }
 
 .cancelBtn:hover {
-    background-color: rgba(200, 200, 200, 0.65);
+    background-color: rgba(255, 0, 0, 0.6);
+    box-shadow      : 0 0 5px 1px rgb(255, 0, 0);
 }
 
 .cancelBtn:focus {
-    background-color: rgb(170, 170, 170);
+    background-color: red;
+    box-shadow      : 0 0 5px 2px rgb(255, 0, 0);
+    transform: scale(0.9);
 }
 
 .validationAlert {
     color    : red;
     font-size: 10px;
+}
+
+.inValid {
+    box-shadow: 0 0 8px 0 red;
 }

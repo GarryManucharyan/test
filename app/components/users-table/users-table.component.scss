@@ -13,7 +13,7 @@ table {
 
 table th {
     color           : white;
-    background-color: rgba(0, 170, 190, 0.4);
+    background-color: rgba(0, 170, 190, 0.65);
     font-size       : 12px;
     padding         : 18px 12px;
     width           : 200px;
@@ -66,6 +66,10 @@ th.actionsHeading {
     background-color: rgba(0, 190, 210, 0.9);
 }
 
+.actionsCell a:focus {
+    transform: scale(0.9);
+}
+
 .actionsCell button,
 .actionsCell button:hover {
     cursor          : pointer;
@@ -85,6 +89,10 @@ th.actionsHeading {
     color           : white;
     background-color: red;
     box-shadow      : red 0px 0px 4px 1px;
+}
+
+.actionsCell button:focus {
+    transform: scale(0.9);
 }
 
 .emptyTableAlert {

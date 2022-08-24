@@ -36,7 +36,6 @@ export class UserFormComponent implements OnInit {
     if (this.pageMode !== "create") {
       this.initCurrentUser()
     };
-    console.log(this.activeRoute);
   }
 
   private initPageMode(): void {
