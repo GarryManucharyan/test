@@ -1,7 +1,8 @@
 .all {
     display         : inline-block;
-    background-color: rgba(220, 220, 220, 0.2);
+    background-color: rgba(0, 220, 255, 0.07);
     padding         : 15px 10px 30px;
+    border          : double 2px rgba(0, 220, 255, 0.1);
     border-radius   : 6px;
     width           : 262px;
     margin-left     : 100px;
@@ -104,14 +105,14 @@ input:disabled {
 
 .updateBtn:hover {
     color           : rgba(0, 189, 9, 0.6);
-    background-color: rgba(0, 0, 0, 0);
+    background-color: white;
     box-shadow      : 0 0 8px 1px rgba(0, 189, 9, 0.6);
 }
 
 
 .updateBtn:focus {
-    box-shadow      : 0 0 8px 2px rgba(0, 189, 9, 0.9);
-    transform: scale(0.9);
+    box-shadow: 0 0 8px 2px rgba(0, 189, 9, 0.9);
+    transform : scale(0.9);
 
 }
 
@@ -145,7 +146,7 @@ input:disabled {
 .cancelBtn:focus {
     background-color: red;
     box-shadow      : 0 0 5px 2px rgb(255, 0, 0);
-    transform: scale(0.9);
+    transform       : scale(0.9);
 }
 
 .validationAlert {

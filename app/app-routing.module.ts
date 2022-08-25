@@ -2,18 +2,20 @@ import { UserFormComponent } from './components/form-components/user-form/user-f
 import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
 import { TableWrapperComponent } from './components/table-wrapper/table-wrapper.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AddUserGuard } from './guards/add-user.guard';
 import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
   { path: "", component: TableWrapperComponent, pathMatch: "full" },
   { path: "view/:id", component: UserFormComponent, data: { mode: 'view' } },
   { path: "edit/:id", component: UserFormComponent, data: { mode: 'edit' } },
-  { path: "create", component: UserFormComponent, data: { mode: 'create' } },
+  { path: "create", component: UserFormComponent, data: { mode: 'create' }, canActivate: [AddUserGuard] },
   { path: "**", component: PageNotFoundComponent }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AddUserGuard]
 })
 export class AppRoutingModule { }

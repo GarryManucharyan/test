@@ -1,5 +1,5 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { User, userResponseModel } from 'src/app/data/user.model';
 import { Subscription } from 'rxjs';
 
@@ -31,16 +31,25 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     })
     this.dataSubscribtions.push(this.dataService.delete(id).subscribe(() => {
       console.warn("user", id, "deleted");
+      this.initUsersList();
     }));
+
   };
 
   initUsersList(): void {
     this.dataSubscribtions.push(this.dataService.getUsers().subscribe(users => {
+      this.dataService.isAbleAddNewUser = users.length < this.dataService.maxUsersCount;
+
+      console.log("max count of users = " + this.dataService.maxUsersCount);
+      console.log(`current Count of users = ${users.length}`);
+      console.log("is able to add user = " + this.dataService.isAbleAddNewUser);
+
       this.usersList = users.map((user: userResponseModel) => {
         return this.dataService.convertToUserModel(user);
       });
     }));
   };
+
 
   ngOnDestroy() {
     this.dataSubscribtions.forEach(subscription => subscription.unsubscribe());

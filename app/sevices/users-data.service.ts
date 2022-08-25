@@ -10,6 +10,11 @@ import { Observable } from 'rxjs';
 export class UsersDataService {
 
     constructor(private http: HttpClient) { }
+
+    public maxUsersCount: number = 20;
+    public isAbleAddNewUser: boolean = false;
+
+
     //#region Setters
 
     add(user: User) {
