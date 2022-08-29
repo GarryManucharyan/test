@@ -1,0 +1,12 @@
+<div class="pageNav">
+    <label for="bufferSize">Select Buffer Size </label>
+    <select name="bufferSize" id="bufferSize" (change)="onChangeBufferSize($event)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="15">15</option>
+    </select>
+    <button class="pageChangeBtn prev" [disabled]="(currentPage === 1)" (click)="onRenderPage(currentPage - 1)">
+        < </button>
+            <span class="currentPage"> {{currentPage}}</span>
+            <button class="pageChangeBtn next" (click)="onRenderPage(currentPage + 1)">> </button>
+</div>

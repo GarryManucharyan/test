@@ -11,9 +11,7 @@ export class AddUserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // console.log(route);
-      // console.log(state);
-      if (!this.dataService.isAbleAddNewUser) alert(`we can't have, more users than ${this.dataService.maxUsersCount}`)
-    return this.dataService.isAbleAddNewUser;
+    if (!this.dataService.isAbleAddUser) alert(`we can't have, more  than ${this.dataService.maxUsersCount} users`)
+    return this.dataService.isAbleAddUser;
   }
 }

@@ -9,6 +9,7 @@ export class TableWrapperComponent implements OnInit {
 
   constructor() { }
 
+
   public tableData: { propName: string, heading: string }[] = [
     { propName: 'firstName', heading: 'First Name' },
     { propName: 'lastName', heading: 'Last Name' },
@@ -18,5 +19,4 @@ export class TableWrapperComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

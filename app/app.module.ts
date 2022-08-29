@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserFormComponent } from './components/form-components/user-form/user-form.component';
 import { TableWrapperComponent } from './components/table-wrapper/table-wrapper.component';
 import { PageNotFoundComponent } from './components/error404page/pageNotFound.component';
+import { SelectPageComponent } from './components/select-page/select-page.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { AppComponent } from './app.component';
 
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     UsersTableComponent,
     UserFormComponent,
     AppComponent,
+    SelectPageComponent,
   ],
   imports: [
     FormsModule,

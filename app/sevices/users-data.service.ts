@@ -11,8 +11,9 @@ export class UsersDataService {
 
     constructor(private http: HttpClient) { }
 
-    public maxUsersCount: number = 20;
-    public isAbleAddNewUser: boolean = false;
+    public isAbleAddUser: boolean = true;
+    public maxUsersCount: number = 50;
+    public bufferSize: number = 10;
 
 
     //#region Setters
@@ -32,7 +33,8 @@ export class UsersDataService {
     //#endregion
     //#region Getters
 
-    getUsers(): Observable<userResponseModel[]> {
+    getUsers(pageNum?: number, limit: number = 10): Observable<userResponseModel[]> {
+        if (pageNum) return this.http.get<userResponseModel[]>(environment.url + `?_page=${pageNum}&_limit=${limit}`)
         return this.http.get<userResponseModel[]>(environment.url)
     }
     getUserById(id: number): Observable<userResponseModel> {
@@ -59,5 +61,6 @@ export class UsersDataService {
         }
     }
 
-    //#endregion
+
 }
+ //#endregion

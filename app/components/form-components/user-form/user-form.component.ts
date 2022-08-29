@@ -98,8 +98,16 @@ export class UserFormComponent implements OnInit {
           this.isSaveButtonDisabled = false
           return err
         })).subscribe(() => {
+
+          // TODO:
+          // used subscribe inside subscribe for initializing correct value of "isAbleAddUser"
+
+          this.dataService.getUsers().subscribe(users => {
+            this.dataService.isAbleAddUser = users.length < this.dataService.maxUsersCount
+          })  //   all users list getted just for correct working of "add-user-guard"  
           this.onNavigateToHomePage();
-        }));
+        })
+    );
   };
 
   onChangeUserDetails() {
@@ -121,7 +129,7 @@ export class UserFormComponent implements OnInit {
 
   onNavigateToHomePage() {
     this.isSaveButtonDisabled = false;
-    this.router.navigate([""]);
+    this.router.navigate(["users"]);
   }
 
   ngOnDestroy() {

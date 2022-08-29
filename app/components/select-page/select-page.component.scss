@@ -1,0 +1,90 @@
+.pageNav {
+    background-color: rgba(0, 170, 190, 0.1);
+    width           : 275px;
+    margin-top      : 7px;
+    padding         : 5px 10px;
+    border-radius   : 5px;
+    color           : rgba(0, 170, 190, 1);
+}
+
+
+.pageChangeBtn,
+.pageChangeBtn:hover {
+    font-weight     : bold;
+    cursor          : pointer;
+    color           : rgba(0, 170, 190, 1);
+    background-color: white;
+    margin          : 2px 0;
+    padding         : 5px 10px 6px;
+    transition      : 120ms;
+    border          : none
+}
+
+.pageChangeBtn:disabled {
+    cursor          : default;
+    color           : rgba(0, 170, 190, 1);
+    background-color: white;
+}
+
+.pageChangeBtn:disabled:hover {
+    cursor          : default;
+    color           : white;
+    background-color: rgba(0, 170, 190, 0.2);
+    transition      : 120ms;
+    border          : none;
+    transform       : none;
+    box-shadow      : none;
+    border-radius   : initial;
+}
+
+.prev,
+.prev:disabled:hover {
+    margin-left  : 10px;
+    border-radius: 15px 0 0 15px;
+    transform    : none;
+}
+
+
+.next,
+.next:disabled:hover {
+    border-radius: 0 15px 15px 0;
+    transform    : none;
+}
+
+
+.prev:hover,
+.next:hover {
+    box-sizing      : border-box;
+    background-color: white;
+    border-color    : rgba(0, 0, 0, 0);
+    box-shadow      : 2px 2px 5px 0px rgba(0, 170, 190, 1);
+    color           : rgba(0, 170, 190, 1);
+    z-index         : 1;
+}
+
+.prev:hover {
+    margin-left: 10px;
+}
+
+.currentPage {
+    cursor          : default;
+    color           : rgba(0, 140, 160, 1);
+    background-color: white;
+    box-shadow      : 2px 2px 5px 0px rgba(0, 170, 190, 1);
+    text-align      : center;
+    padding         : 3px 9px 5px 3px;
+    margin          : 0 7px;
+    border-radius   : 50%;
+}
+
+label {
+
+    font-size : 12px;
+    margin-top: 10px;
+}
+
+select {
+    margin-top: 5px;
+    border    : none;
+    color     : rgba(0, 170, 190, 1);
+}
