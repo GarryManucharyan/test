@@ -18,9 +18,9 @@ export class SelectPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChangePage(currentPage: number): void {
-    this.currentPage = currentPage
-    this.clickedAnyButton.emit(currentPage);
+  onChangePage(newPage: number): void {
+    this.currentPage = newPage
+    this.clickedAnyButton.emit(newPage);
   }
 
   onChangeBufferSize($event: any) {
