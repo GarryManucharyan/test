@@ -13,18 +13,18 @@ export class SelectPageComponent implements OnInit {
   constructor(private dataService: UsersDataService) { }
 
   @Output()
-  renderPage = new EventEmitter()
+  clickedAnyButton = new EventEmitter()
 
   ngOnInit(): void {
   }
 
-  onRenderPage(currentPage: number): void {
+  onChangePage(currentPage: number): void {
     this.currentPage = currentPage
-    this.renderPage.emit(currentPage)
+    this.clickedAnyButton.emit(currentPage);
   }
 
   onChangeBufferSize($event: any) {
     this.dataService.bufferSize = $event.target.value;
-    this.renderPage.emit(this.currentPage)
+    this.clickedAnyButton.emit(this.currentPage)
   }
 }

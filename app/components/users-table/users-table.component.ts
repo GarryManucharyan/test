@@ -37,7 +37,8 @@ export class UsersTableComponent implements OnInit, OnDestroy, OnChanges {
     }),
       this.dataService.getUsers().subscribe(users => {
         this.dataService.isAbleAddUser = users.length < this.dataService.maxUsersCount;
-      }));      //   all users list getted just for correct working of "add-user-guard"  
+      }));
+    //   all users list getted just for correct working of "add-user-guard"  
   };
 
   initUsersList(currentPage?: number): void {

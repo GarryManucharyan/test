@@ -19,5 +19,5 @@
     </table>
     <p *ngIf="!columns?.length" class="emptyTableAlert">Oops, We don't have any data to show you (`_`)</p>
     
-<app-select-page (renderPage)="initCurrentPage($event)"></app-select-page>
+<app-select-page (clickedAnyButton)="initCurrentPage($event)"></app-select-page>
 </div>
