@@ -1,23 +1,25 @@
 <div class="all">
-    <table *ngIf="columns?.length">
+    <table *ngIf="columns?.length; else emptyTable">
         <tr>
-            <ng-container *ngFor="let data of columns">
-                <th> {{data.heading}}</th>
+            <ng-container *ngFor="let column of columns">
+                <th> {{column.heading}}</th>
             </ng-container>
             <th class="actionsHeading">Actions</th>
         </tr>
         <tr *ngFor="let user of usersList">
-            <ng-container *ngFor="let data of columns">
-                <td>{{user[data.propName]}}</td>
+            <ng-container *ngFor="let column of columns">
+                <td>{{user[column.propName]}}</td>
             </ng-container>
             <td class="actionsCell">
                 <a class="action" [routerLink]="['view', user.id]">View </a>
                 <a class="action" [routerLink]="['edit', user.id]">Edit </a>
-                <button class="action" (click)="onDeleteUserById(user.id)">Delete</button>
+                <button class="fa fa-trash" (click)="onDeleteUserById(user.id)"></button>
             </td>
         </tr>
+        
     </table>
-    <p *ngIf="!columns?.length" class="emptyTableAlert">Oops, We don't have any data to show you (`_`)</p>
-    
-<app-select-page (clickedAnyButton)="initCurrentPage($event)"></app-select-page>
+    <ng-template #emptyTable>
+        <p class="emptyTableAlert">Oops, We don't have any data to show you (`_`)</p>
+    </ng-template>
+    <app-paginator (pageChange)="onPageChange($event)" [currentListLength]="usersList.length"></app-paginator>
 </div>

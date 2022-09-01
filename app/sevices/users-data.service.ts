@@ -1,8 +1,8 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { User, userResponseModel } from "../data/user.model";
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -10,11 +10,6 @@ import { Observable } from 'rxjs';
 export class UsersDataService {
 
     constructor(private http: HttpClient) { }
-
-    public isAbleAddUser: boolean = true;
-    public maxUsersCount: number = 50;
-    public bufferSize: number = 10;
-
 
     //#region Setters
 
@@ -33,12 +28,26 @@ export class UsersDataService {
     //#endregion
     //#region Getters
 
-    getUsers(pageNum?: number, limit: number = 10): Observable<userResponseModel[]> {
-        if (pageNum) return this.http.get<userResponseModel[]>(environment.url + `?_page=${pageNum}&_limit=${limit}`)
-        return this.http.get<userResponseModel[]>(environment.url)
+    getUsers(pageNum?: number, limit: number = 10): Observable<User[]> {
+        if (pageNum) {
+            let params = new HttpParams()
+                .set("_page", pageNum)
+                .set("_limit", limit);
+            return this.http.get<userResponseModel[]>(environment.url, { params: params }).pipe(map((users: userResponseModel[]) => {
+                return users.map((user: userResponseModel) => {
+                    return this.convertToUserModel(user)
+                })
+            }));
+        }
+        return this.http.get<userResponseModel[]>(environment.url).pipe(map((users: userResponseModel[]) => {
+            return users.map((user: userResponseModel) => {
+                return this.convertToUserModel(user)
+            })
+        }))
     }
-    getUserById(id: number): Observable<userResponseModel> {
-        return this.http.get<userResponseModel>(`${environment.url}/${id}`)
+
+    getUserById(id: number): Observable<User> {
+        return this.http.get<userResponseModel>(`${environment.url}/${id}`).pipe(map(user => this.convertToUserModel(user)))
     }
     //#endregion
     //#region helpers

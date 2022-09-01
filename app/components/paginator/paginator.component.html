@@ -1,0 +1,15 @@
+<div class="pageNav">
+    <label for="pageCount">Select Buffer Size </label>
+    <select name="pageCount" id="pageCount" (change)="onChangepageCount($event)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="15">15</option>
+    </select>
+    <button class="pageChangeBtn prev" [disabled]="(currentPage === 1)" (click)="onChangePage(currentPage - 1)">
+        <i class="fa fa-angle-double-left"></i>
+    </button>
+    <span class="currentPage"> {{currentPage}}</span>
+    <button class="pageChangeBtn next" [disabled]="isNextBtnDisabled" (click)="onChangePage(currentPage + 1)">
+        <i class="fa fa-angle-double-right"></i>
+    </button>
+</div>

@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
+import { PaginatorComponent } from '../paginator/paginator.component';
 import { UsersDataService } from 'src/app/sevices/users-data.service';
-import { User, userResponseModel } from 'src/app/data/user.model';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { User } from 'src/app/data/user.model';
+import { ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,10 +10,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss'],
 })
-export class UsersTableComponent implements OnInit, OnDestroy, OnChanges {
+export class UsersTableComponent implements OnInit, OnDestroy {
 
+  @ViewChild(PaginatorComponent)
+  private paginator!: PaginatorComponent
 
-  public usersLimit: number = this.dataService.bufferSize;
   public usersList: User[] = [];
 
   @Input()
@@ -21,6 +24,7 @@ export class UsersTableComponent implements OnInit, OnDestroy, OnChanges {
   private dataSubscribtions: Subscription[] = [];
 
   constructor(
+
     private dataService: UsersDataService,
   ) { }
 
@@ -34,31 +38,23 @@ export class UsersTableComponent implements OnInit, OnDestroy, OnChanges {
     })
     this.dataSubscribtions.push(this.dataService.delete(id).subscribe(() => {
       console.warn("user", id, "deleted");
+
+      this.initUsersList(this.paginator.currentPage, this.paginator.pageCount)
     }),
-      this.dataService.getUsers().subscribe(users => {
-        this.dataService.isAbleAddUser = users.length < this.dataService.maxUsersCount;
-      }));
-    //   all users list getted just for correct working of "add-user-guard"  
+    );
   };
 
-  initUsersList(currentPage?: number): void {
-    this.usersLimit = this.dataService.bufferSize
-    this.dataSubscribtions.push(this.dataService.getUsers(currentPage, this.usersLimit).subscribe(users => {
-      this.usersList = users.map((user: userResponseModel) => {
-        return this.dataService.convertToUserModel(user);
-      });
+  initUsersList(currentPage: number, pageCount: number = 10): void {
+    this.dataSubscribtions.push(this.dataService.getUsers(currentPage, pageCount).subscribe(users => {
+      this.usersList = users
     }));
-  };
-
-  initCurrentPage(pageNum: number) {
-    this.currentPage = pageNum,
-      this.initUsersList(pageNum)
   }
 
-  ngOnChanges() {
-    // TODO:
-    this.initUsersList(this.currentPage)
+  onPageChange(pageInitData: { pageNumber: number, pageCount: number }) {
+    this.currentPage = pageInitData.pageNumber;
+    this.initUsersList(pageInitData.pageNumber, pageInitData.pageCount);
   }
+
 
   ngOnDestroy() {
     this.dataSubscribtions.forEach(subscription => subscription.unsubscribe());

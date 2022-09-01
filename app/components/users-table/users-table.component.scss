@@ -9,6 +9,7 @@ table {
     border-radius   : 5px;
     padding         : 2px;
     background-color: rgba(0, 169, 189, 0.1);
+    transition      : 300ms;
 }
 
 table th {
@@ -73,21 +74,22 @@ th.actionsHeading {
 .actionsCell button,
 .actionsCell button:hover {
     cursor          : pointer;
-    color           : red;
+    color           : rgba(255, 0, 0, 0.3);
     box-sizing      : border-box;
     text-align      : center;
-    min-width       : 56px;
     background-color: rgba(252, 97, 97, 0);
     border          : none;
-    border-radius   : 3px;
-    padding         : 3px 6px;
+    border-radius   : 50%;
+    padding         : 2px 5px;
     margin          : 2px;
+    margin-left: 5px;
     transition      : 300ms;
+    font-size       : 18px;
 }
 
 .actionsCell button:hover {
     color           : white;
-    background-color: red;
+    background-color: rgb(255, 0, 0);
     box-shadow      : red 0px 0px 4px 1px;
 }
 

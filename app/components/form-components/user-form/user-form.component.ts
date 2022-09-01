@@ -1,10 +1,9 @@
 import { UsersDataService } from 'src/app/sevices/users-data.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { catchError, Subscription } from 'rxjs';
 import { User } from 'src/app/data/user.model';
-import { Router } from '@angular/router';
 
 type pageModeType = 'edit' | 'view' | 'create';
 
@@ -51,8 +50,8 @@ export class UserFormComponent implements OnInit {
         throw err;
       }))
       .subscribe(user => {
-        this.currentUser = this.dataService.convertToUserModel(user);
-        this.initFormValue();
+        this.currentUser = user;
+        this.initFormValue()
       });
   }
 
@@ -98,13 +97,6 @@ export class UserFormComponent implements OnInit {
           this.isSaveButtonDisabled = false
           return err
         })).subscribe(() => {
-
-          // TODO:
-          // used subscribe inside subscribe for initializing correct value of "isAbleAddUser"
-
-          this.dataService.getUsers().subscribe(users => {
-            this.dataService.isAbleAddUser = users.length < this.dataService.maxUsersCount
-          })  //   all users list getted just for correct working of "add-user-guard"  
           this.onNavigateToHomePage();
         })
     );
