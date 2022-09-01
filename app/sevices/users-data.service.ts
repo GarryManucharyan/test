@@ -38,12 +38,13 @@ export class UsersDataService {
                     return this.convertToUserModel(user)
                 })
             }));
+        } else {
+            return this.http.get<userResponseModel[]>(environment.url).pipe(map((users: userResponseModel[]) => {
+                return users.map((user: userResponseModel) => {
+                    return this.convertToUserModel(user)
+                })
+            }))
         }
-        return this.http.get<userResponseModel[]>(environment.url).pipe(map((users: userResponseModel[]) => {
-            return users.map((user: userResponseModel) => {
-                return this.convertToUserModel(user)
-            })
-        }))
     }
 
     getUserById(id: number): Observable<User> {
@@ -69,7 +70,5 @@ export class UsersDataService {
             id: user.id
         }
     }
-
-
 }
  //#endregion

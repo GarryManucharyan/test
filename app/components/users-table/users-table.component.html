@@ -11,9 +11,9 @@
                 <td>{{user[column.propName]}}</td>
             </ng-container>
             <td class="actionsCell">
-                <a class="action" [routerLink]="['view', user.id]">View </a>
-                <a class="action" [routerLink]="['edit', user.id]">Edit </a>
-                <button class="fa fa-trash" (click)="onDeleteUserById(user.id)"></button>
+                <a title="View" class="action fa fa-eye" [routerLink]="['view', user.id]"> </a>
+                <a title="edit" class="action fa fa-edit" [routerLink]="['edit', user.id]"> </a>
+                <button title="delete" class="fa fa-trash" (click)="onDeleteUserById(user.id)"></button>
             </td>
         </tr>
         

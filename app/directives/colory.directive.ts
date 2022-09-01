@@ -17,4 +17,4 @@ export class ColoryDirective {
   }
 }
 
-// voch mi tex chi kirarvum, stexcvaca usumnakan npataknerov
+// voch mi tex chi kirarvum, stexcvaca usumnakan npataknerov, grancvaca app-module-i declarations-um

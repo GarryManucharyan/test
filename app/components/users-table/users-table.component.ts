@@ -23,10 +23,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
   private dataSubscribtions: Subscription[] = [];
 
-  constructor(
-
-    private dataService: UsersDataService,
-  ) { }
+  constructor(private dataService: UsersDataService,) { }
 
   ngOnInit(): void {
     this.initUsersList(this.currentPage);
@@ -38,7 +35,6 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     })
     this.dataSubscribtions.push(this.dataService.delete(id).subscribe(() => {
       console.warn("user", id, "deleted");
-
       this.initUsersList(this.paginator.currentPage, this.paginator.pageCount)
     }),
     );
