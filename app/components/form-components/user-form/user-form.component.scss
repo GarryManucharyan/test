@@ -56,9 +56,9 @@ input:disabled {
 .submitBtn,
 .submitBtn:hover,
 .submitBtn:focus {
+    cursor          : pointer;
     color           : white;
     display         : flex;
-    cursor          : pointer;
     background-color: rgba(0, 169, 189, 0.5);
     padding         : 10px;
     margin          : 0 5px;

@@ -1,4 +1,6 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,11 +24,14 @@ import { ColoryDirective } from './directives/colory.directive';
     UserFormComponent,
     ColoryDirective,
     AppComponent,
+
   ],
   imports: [
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatDialogModule,
     BrowserModule,
     FormsModule,
   ],

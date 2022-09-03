@@ -12,9 +12,7 @@ export class ColoryDirective {
     this.BGColor = "rgba(0, 180, 0, 0.2)"
     this.color = "white"
   }
-
-  constructor() {
-  }
+  constructor() {}
 }
 
-// voch mi tex chi kirarvum, stexcvaca usumnakan npataknerov, grancvaca app-module-i declarations-um
+// voch mi tex chi kirarvum, stexcvaca usumnakan npataknerov, grancvaca app-module-i declarations-um b
